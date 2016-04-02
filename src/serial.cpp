@@ -16,7 +16,7 @@
 
 int serial_fd;
 char send_buf[20];
-unsigned char data_send[14]
+unsigned char data_send[14];
 short data[6];
 unsigned short crc_data = 0;
 
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 						         data_send[8], data_send[9],
 						         data_send[10], data_send[11],
 						         data_send[12], data_send[13]);
-		send(data_send, 20);
+		send(send_buf, 20);
 		ros::spinOnce();
 		loop_rate.sleep();
 	}
