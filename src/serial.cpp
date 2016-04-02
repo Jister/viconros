@@ -55,12 +55,12 @@ int main(int argc, char **argv)
 
 void viconCallback(const viconros::viconmocap msg)
 {
- 	data[0] = (int) msg.position.x * 1000;
- 	data[1] = (int) msg.position.y * 1000;
- 	data[2] = (int) msg.position.z * 1000;
- 	data[3] = (int) msg.velocity.x * 1000;
- 	data[4] = (int) msg.velocity.y * 1000;
- 	data[5] = (int) msg.velocity.z * 1000;
+ 	data[0] = msg.position.x * 1000;
+ 	data[1] = msg.position.y * 1000;
+ 	data[2] = msg.position.z * 1000;
+ 	data[3] = msg.velocity.x * 1000;
+ 	data[4] = msg.velocity.y * 1000;
+ 	data[5] = msg.velocity.z * 1000;
  	crc_data = crc(data, 12);
  	data_send[0] = data[0];
  	data_send[1] = data[0] >> 8;
