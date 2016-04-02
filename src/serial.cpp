@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 	serial_init();
 	while(ros::ok())
 	{
-		sprintf(send_buf, ">*>%c%c%c%c%c%c%c%c%c%c%c%c%c%c<*<", data_send[0], data_send[1],
+		sprintf(send_buf, ">*>%c%c%c%c%c%c%c%c%c%c%c%c%c%c<#<", data_send[0], data_send[1],
 						         data_send[2], data_send[3],
 						         data_send[4], data_send[5],
 						         data_send[6], data_send[7],
