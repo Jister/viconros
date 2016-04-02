@@ -15,7 +15,7 @@
 #define DEVICE 	"/dev/ttyUSB0"  
 
 int serial_fd;
-char send_buf[20];
+char send_buf[50];
 unsigned char data_send[14];
 short data[6];
 unsigned short crc_data = 0;
@@ -38,14 +38,6 @@ int main(int argc, char **argv)
 	serial_init();
 	while(ros::ok())
 	{
-		sprintf(send_buf, ">*>%c%c%c%c%c%c%c%c%c%c%c%c%c%c<#<", data_send[0], data_send[1],
-						         data_send[2], data_send[3],
-						         data_send[4], data_send[5],
-						         data_send[6], data_send[7],
-						         data_send[8], data_send[9],
-						         data_send[10], data_send[11],
-						         data_send[12], data_send[13]);
-		send(send_buf, 20);
 		ros::spinOnce();
 		loop_rate.sleep();
 	}
@@ -76,6 +68,14 @@ void viconCallback(const viconros::viconmocap msg)
  	data_send[11] = data[5] >> 8;
  	data_send[12] = crc_data;
  	data_send[13] = crc_data >> 8;
+ 	sprintf(send_buf, ">*>%c%c%c%c%c%c%c%c%c%c%c%c%c%c<#<", data_send[0], data_send[1],
+								data_send[2], data_send[3],
+								data_send[4], data_send[5],
+								data_send[6], data_send[7],
+								data_send[8], data_send[9],
+								data_send[10], data_send[11],
+								data_send[12], data_send[13]);
+	send(send_buf, 20);
 }
 
 int set_serial(int fd,int nSpeed, int nBits, char nEvent, int nStop)  
