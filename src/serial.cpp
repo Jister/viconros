@@ -11,7 +11,7 @@
 #include <errno.h>
 
 
-#define BAUDRATE 	B57600
+#define BAUDRATE 	57600
 #define DEVICE 	"/dev/ttyUSB0"  
 
 int serial_fd;
