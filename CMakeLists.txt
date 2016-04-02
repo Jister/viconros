@@ -68,13 +68,15 @@ find_package(catkin REQUIRED COMPONENTS
 #   Action2.action
 # )
 
- add_message_files(FILES viconmocap.msg)
+add_message_files(
+  FILES viconmocap.msg
+)
 ## Generate added messages and services with any dependencies listed here
- generate_messages(
-   DEPENDENCIES
-   std_msgs
-   geometry_msgs
- )
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+  geometry_msgs
+)
 
 
  catkin_package(CATKIN_DEPENDS message_runtime)
@@ -172,4 +174,7 @@ include_directories(
 # catkin_add_nosetests(test)
 add_executable(viconros src/viconros.cpp src/CFetchViconData.cpp)
 target_link_libraries(viconros ${catkin_LIBRARIES} DebugServices ViconDataStreamSDK_CPP)
-add_dependencies(viconros beginner_tutorials_generate_messages_cpp)
+add_dependencies(viconros viconros_generate_messages_cpp)
+
+add_executable(serial src/serial.cpp)
+target_link_libraries(serial ${catkin_LIBRARIES})
